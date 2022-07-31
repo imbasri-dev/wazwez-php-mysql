@@ -1,0 +1,34 @@
+
+// wazwez app
+
+mendapatkan nilai dari 2 tabel task dan subtask yang dimana mengecheck hasil status
+
+SELECT tasks.user_id as User,tasks.name as TaskName, subtasks.name as SubTaskName , tasks.description , tasks.date , tasks.status
+FROM tasks
+INNER JOIN subtasks
+ON tasks.task_id = subtasks.task_id WHERE tasks.status;
+==========================================================================================================================
+// tugas 1
+
+mendapatkan nilai dari 2 tabel task dan subtask yang dimana status ya sama-sama ongoing/unchecked
+
+SELECT tasks.user_id as User,tasks.name as TaskName, subtasks.name as SubTaskName , tasks.description , tasks.date , tasks.status
+FROM tasks
+INNER JOIN subtasks
+ON tasks.task_id = subtasks.task_id WHERE tasks.status = "ONGOING";
+==========================================================================================================================
+
+// tugas 2
+mendapatkan nilai dari 2 tabel task dan subtask yang dimana status terselesaikan / done
+
+SELECT tasks.user_id as User,tasks.name as TaskName, subtasks.name as SubTaskName , tasks.description , tasks.date , tasks.status
+FROM tasks
+INNER JOIN subtasks
+ON tasks.task_id = subtasks.task_id WHERE tasks.status = "DONE";
+
+
+// mendapatkan subtask dan username/ID berdasarkan status DONE
+SELECT tasks.task_id AS Task_ID, users.name AS Username ,tasks.name AS "Task Name",tasks.description,tasks.date, tasks.status
+FROM tasks
+INNER JOIN users
+ON tasks.user_id = users.user_id WHERE status ="DONE";
