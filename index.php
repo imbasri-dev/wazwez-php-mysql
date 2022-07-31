@@ -96,7 +96,6 @@ include "db.php";
                             <!-- content 1 start -->
                             <div class="task_content_bar" id="newTaskBar ">
                                 <div class="task_content" id="newTask">
-
                                     <input type="checkbox" name="task" value="task" id="<?= $task["task_id"] ?>" />
                                     <label for="<?= $task["task_id"] ?>"></label>
                                     <span class="title_content"><?= $task["name"] ?></span>
@@ -158,7 +157,6 @@ include "db.php";
                         <div id="inputBaru"></div>
                         <!-- move hasil input  end-->
                         </div>
-
 
                         <!-- subtask dropdown end -->
                         <div class="batas_line"></div>
