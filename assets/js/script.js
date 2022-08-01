@@ -9,6 +9,7 @@ tambahTask.addEventListener("click", function () {
 });
 // tambah task end
 
+let inputName = document.getElementById("inputName");
 // form input
 // check ambil nilai input start
 let input = document.getElementById("form-tambah");
@@ -48,7 +49,7 @@ function handleEnterAddTask() {
   let newTask = document.getElementById("inputBaru");
   newTask.innerHTML += `<div class="task_content_bar" id="newTaskBar ">
                 <div class="task_content" id="newTask">
-                  <input type="checkbox" name="task" value="task" id="${task.name}" />
+                  <input type="checkbox" name="task" id="${task.name}" />
                   <label for="${task.name}"></label>
                   <span class="title_content">${task.name}</span>
                   <span class="sort_content">${task.date}</span>
@@ -120,13 +121,13 @@ deletedSubtask();
 // subtask content end
 
 // addsubtask show/close start
+let buttonAddSubtask = document.getElementsByClassName("subtask_addbutton");
+let showInputSubtask = document.getElementsByClassName("subtask_add");
 for (
   let buttonAddNode = 0;
   buttonAddNode < taskButton.length;
   buttonAddNode++
 ) {
-  let buttonAddSubtask = document.getElementsByClassName("subtask_addbutton");
-  let showInputSubtask = document.querySelectorAll(".subtask_add");
   buttonAddSubtask[buttonAddNode].addEventListener("click", function () {
     showInputSubtask[buttonAddNode].classList.toggle("show_subtask");
   });
@@ -134,12 +135,14 @@ for (
 // addsubtask show/close end
 
 // func addsubtask start
+let inputSubtask = document.querySelectorAll(".subtask_addinput");
+let inputBaru = document.querySelectorAll("#subtaskBaru");
+
 for (
   let inputSubtaskNode = 0;
   inputSubtaskNode < taskButton.length;
   inputSubtaskNode++
 ) {
-  let inputSubtask = document.querySelectorAll("#subtask_addinput");
   inputSubtask[inputSubtaskNode].addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -147,13 +150,34 @@ for (
         alert("Nama tugas tidak boleh kosong !");
       } else {
         console.log(inputSubtask[inputSubtaskNode].value);
-        handleEnterSubTask();
+        inputBaru[inputSubtaskNode].innerHTML += `
+                                 <div class="subtask_content" id="subtask_content">
+                                    <div class="subtask_input">
+                                        <input type="checkbox" id="${inputSubtask[inputSubtaskNode].value}" />
+                                        <label for="${inputSubtask[inputSubtaskNode].value}"></label>
+                                        <span>${inputSubtask[inputSubtaskNode].value}</span>
+                                    </div>
+                                    <img src="./assets/img/trash-delete.png" alt="Tambah Task" class="subtask_content_delete" id="deleted">
+                                </div>
+                                `;
+        let deleteSubTask = document.querySelectorAll("#deleted");
+        let contentSubTask = document.querySelectorAll("#subtask_content");
+        for (let z = 0; z < deleteSubTask.length; z++) {
+          deleteSubTask[z].addEventListener("click", function () {
+            let konfirm = confirm("Apakah dihapus ?");
+            if (konfirm == true) {
+              contentSubTask[z].remove(".subtask_content");
+            }
+          });
+        }
+
         // alert("Data berhasil ditambahkan");
         document.getElementById("subtask_addinput").value = "";
       }
     }
   });
 }
+
 function deletedSubtask() {
   let deleteSubTask = document.querySelectorAll(".subtask_content_delete");
   let contentSubTask = document.querySelectorAll("#subtask_content");
@@ -168,19 +192,18 @@ function deletedSubtask() {
 }
 
 // func addsubtask end
-function handleEnterSubTask() {
-  let inputSubtask = document.getElementById("subtask_addinput").value;
-  let inputBaru = document.getElementById("subtaskBaru");
-
-  inputBaru.innerHTML += `
-
-                <div class="subtask_content" id="subtask_content">
-                  <div class="subtask_input">
-                    <input type="checkbox" id="${inputSubtask}" />
-                    <label for="${inputSubtask}"></label>
-                    <span>${inputSubtask}</span>
-                    </div>
-                    <img src="./assets/img/trash-delete.png" alt="Tambah Task" class="subtask_content_delete">
-                </div>`;
-  deletedSubtask();
-}
+// function handleEnterSubTask() {
+//   let inputBaru = document.querySelectorAll("#subtaskBaru");
+//   let inputSubtask = document.getElementsByClassName("subtask_addinput").value;
+//   inputBaru[0].innerHTML += `
+//                                  <div class="subtask_content" id="subtask_content">
+//                                     <div class="subtask_input">
+//                                         <input type="checkbox" id="${inputSubtask}" />
+//                                         <label for="${inputSubtask}">${inputSubtask}</label>
+//                                         <span>${inputSubtask}</span>
+//                                     </div>
+//                                     <img src="./assets/img/trash-delete.png" alt="Tambah Task" class="subtask_content_delete">
+//                                 </div>
+//                                 `;
+//   deletedSubtask();
+// }
