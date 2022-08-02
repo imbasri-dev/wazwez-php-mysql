@@ -1,7 +1,6 @@
 <?php
 // mengambil/import php data dari db.php
 include "database.php";
-
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +14,7 @@ include "database.php";
     <link rel="stylesheet" href="./assets/style/style.css" />
     <title>Fazztrack | WazWez App</title>
 </head>
+
 
 <body>
     <header>
@@ -91,6 +91,7 @@ include "database.php";
             //   import data tasks dari mysql
             $tasks = mysqli_query($conn, $dataTasks);
             foreach ($tasks as $task) {
+
             ?>
                 <div id=" contentTask">
                     <!-- content 1 start -->

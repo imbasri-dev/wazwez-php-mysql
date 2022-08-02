@@ -117,7 +117,6 @@ for (let modalNode = 0; modalNode < modalButton.length; modalNode++) {
 // modal more end
 
 // subtask content start
-deletedSubtask();
 // subtask content end
 
 // addsubtask show/close start
@@ -145,7 +144,6 @@ for (
 ) {
   inputSubtask[inputSubtaskNode].addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
-      event.preventDefault();
       if (inputSubtask[inputSubtaskNode].value === "") {
         alert("Nama tugas tidak boleh kosong !");
       } else {
@@ -160,13 +158,14 @@ for (
                                     <img src="./assets/img/trash-delete.png" alt="Tambah Task" class="subtask_content_delete" id="deleted">
                                 </div>
                                 `;
+
         let deleteSubTask = document.querySelectorAll("#deleted");
         let contentSubTask = document.querySelectorAll("#subtask_content");
-        for (let z = 0; z < deleteSubTask.length; z++) {
-          deleteSubTask[z].addEventListener("click", function () {
+        for (let ad = 0; ad < deleteSubTask.length; ad++) {
+          deleteSubTask[ad].addEventListener("click", function () {
             let konfirm = confirm("Apakah dihapus ?");
             if (konfirm == true) {
-              contentSubTask[z].remove(".subtask_content");
+              contentSubTask[ad].remove(".subtask_content");
             }
           });
         }
@@ -178,17 +177,15 @@ for (
   });
 }
 
-function deletedSubtask() {
-  let deleteSubTask = document.querySelectorAll(".subtask_content_delete");
-  let contentSubTask = document.querySelectorAll("#subtask_content");
-  for (let i = 0; i < deleteSubTask.length; i++) {
-    deleteSubTask[i].addEventListener("click", function () {
-      let konfirm = confirm("Apakah dihapus ?");
-      if (konfirm == true) {
-        contentSubTask[i].remove(".subtask_content");
-      }
-    });
-  }
+let deleteSubTask = document.querySelectorAll(".subtask_content_delete");
+let contentSubTask = document.querySelectorAll("#subtask_content");
+for (let k = 0; k < deleteSubTask.length; k++) {
+  deleteSubTask[k].addEventListener("click", function () {
+    let konfirm = confirm("Apakah dihapus ?");
+    if (konfirm == true) {
+      contentSubTask[k].remove(".subtask_content");
+    }
+  });
 }
 
 // func addsubtask end
